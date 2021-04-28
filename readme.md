@@ -1,6 +1,6 @@
 ## The modified Livetech box based on Homestead
 
-- Back up DBs and then run vagrant destroy
+- Back up DBs (mysql or even mongo and crate) and then run vagrant destroy
 - Back up your aliases, if you have any because this will overwrite them
 - `git remote add livetech git@github.com:liveteched/homestead.git` and checkout the main branch
 - Update Homestead.yml as per example file and modify.
