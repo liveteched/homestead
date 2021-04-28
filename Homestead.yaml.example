@@ -1,4 +1,3 @@
----
 ip: "192.168.10.10"
 memory: 2048
 cpus: 2
@@ -7,29 +6,66 @@ provider: virtualbox
 authorize: ~/.ssh/id_rsa.pub
 
 keys:
-    - ~/.ssh/id_rsa
+  - ~/.ssh/id_rsa
 
 folders:
-    - map: ~/code
-      to: /home/vagrant/code
+  - map: ~/.homestead/Projects
+    to: /home/vagrant/Sites
+
+  - map: ~/Homestead/nginx-configs
+    to: /home/vagrant/nginx-configs
 
 sites:
-    - map: homestead.test
-      to: /home/vagrant/code/public
+  - map: athena.test
+    to: /home/vagrant/Sites/athena/public
+    php: "7.4"
+
+  - map: workshopdownload.test
+    to: /home/vagrant/Sites/workshopdownload/public
+    php: "7.4"
+    
+  - map: qevin.test
+    to: /home/vagrant/Sites/qevin/public
+    php: "7.4"
+
+  - map: admin.sauron.test
+    to: /home/vagrant/Sites/sauron/public
+    php: "8.0"
+
+  - map: sdtek.test
+    to: /home/vagrant/Sites/sdtekcheckin/public
+    php: "7.4"
+
+  - map: arcade.test
+    to: /home/vagrant/Sites/arcade/www
+
+  - map: driversafety.test
+    to: /home/vagrant/Sites/driversafety/public
+
+  - map: trivia.test
+    to: /home/vagrant/Sites/trivia/public
+    php: "7.4"
 
 databases:
-    - homestead
+  - homestead
+  - athena
+  - athena_test
+  - workshopdownload
+  - qevin
+  - sauron
+  - sauron_test
+  - trivia
 
 features:
-    - mariadb: false
-    - ohmyzsh: false
-    - webdriver: false
-
-#services:
-#    - enabled:
-#        - "postgresql@12-main"
-#    - disabled:
-#        - "postgresql@11-main"
+  - mysql: true
+  - mongodb: true
+  - python: true
+  - webdriver: true
+# blackfire:
+#     - id: foo
+#       token: bar
+#       client-id: foo
+#       client-token: bar
 
 # ports:
 #     - send: 50000
