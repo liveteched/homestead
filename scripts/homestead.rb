@@ -16,8 +16,11 @@ class Homestead
     end
 
     # Configure The Box
-    config.vm.define settings['name'] ||= 'livetech'
-    config.vm.box = settings['box'] ||= 'livetech'
+    config.vm.define settings['name'] ||= 'homestead'
+    config.vm.box = settings['box'] ||= 'laravel/homestead'
+    unless settings.has_key?('SpeakFriendAndEnter')
+      config.vm.box_version = settings['version'] ||= '>= 11.0.0, < 12.0.0'
+    end
     config.vm.hostname = settings['hostname'] ||= 'homestead'
 
     # Configure A Private Network IP
@@ -36,7 +39,7 @@ class Homestead
 
     # Configure A Few VirtualBox Settings
     config.vm.provider 'virtualbox' do |vb|
-      vb.name = settings['name'] ||= 'livetech'
+      vb.name = settings['name'] ||= 'homestead'
       vb.customize ['modifyvm', :id, '--memory', settings['memory'] ||= '2048']
       vb.customize ['modifyvm', :id, '--cpus', settings['cpus'] ||= '1']
       vb.customize ['modifyvm', :id, '--natdnsproxy1', 'on']
@@ -61,7 +64,7 @@ class Homestead
     # Configure A Few VMware Settings
     ['vmware_fusion', 'vmware_workstation', 'vmware_desktop'].each do |vmware|
       config.vm.provider vmware do |v|
-        v.vmx['displayName'] = settings['name'] ||= 'livetech'
+        v.vmx['displayName'] = settings['name'] ||= 'homestead'
         v.vmx['memsize'] = settings['memory'] ||= 2048
         v.vmx['numvcpus'] = settings['cpus'] ||= 1
         v.vmx['guestOS'] = 'ubuntu-64'
@@ -73,7 +76,7 @@ class Homestead
 
     # Configure A Few Hyper-V Settings
     config.vm.provider "hyperv" do |h, override|
-      h.vmname = settings['name'] ||= 'livetech'
+      h.vmname = settings['name'] ||= 'homestead'
       h.cpus = settings['cpus'] ||= 1
       h.memory = settings['memory'] ||= 2048
       h.linked_clone = true
@@ -94,7 +97,7 @@ class Homestead
 
     # Configure A Few Parallels Settings
     config.vm.provider 'parallels' do |v|
-      v.name = settings['name'] ||= 'livetech'
+      v.name = settings['name'] ||= 'homestead'
       v.update_guest_tools = settings['update_parallels_tools'] ||= false
       v.memory = settings['memory'] ||= 2048
       v.cpus = settings['cpus'] ||= 1
