@@ -12,10 +12,6 @@ sudo apt install python3.8
 python3.8 -m pip install -U pip
 pip install crash
 
-sudo cp /home/vagrant/nginx-configs/admin.sauron.test /etc/nginx/sites-available/admin.sauron.test
-sudo cp /home/vagrant/nginx-configs/qevin.test /etc/nginx/sites-available/qevin.test
-sudo cp /home/vagrant/nginx-configs/arcade.test /etc/nginx/sites-available/arcade.test
-
 sudo add-apt-repository ppa:openjdk-r/ppa
 sudo apt update
 sudo apt install -y openjdk-11-jre-headless
